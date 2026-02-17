@@ -1,0 +1,36 @@
+h1{
+    text-align: center;
+    font-family: "Righteous";
+  src: url("Righteous-Regular.ttf") format("truetype");
+    font-size: 5em;
+}
+
+
+.fish-wrap{
+  width: 100%;
+  display: flex;
+  justify-content: center; /* 图片水平居中 */
+  margin-top: 30px;        /* 跟标题拉开一点距离 */
+}
+
+.fish{
+  max-width: 70vw;
+  height: auto;
+  display: block;
+}
+
+
+.back-home
+{position: fixed;
+  top: 20px;
+  right: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;}

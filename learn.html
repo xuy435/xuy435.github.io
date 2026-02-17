@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="learn.css">
+    <script src="learn.js" defer></script>
+    <link rel="icon" type="image/png" href="bubbles.png">
+    <title>Let's Learn</title>
+</head>
+
+
+<body>
+
+
+    <!--audio: backgrond music-->
+<audio id="bgm" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+
+
+<!-- music control -->
+<script>
+  const bgm = document.getElementById("bgm");
+  const hint = document.querySelector(".tap-for-music");
+
+  let isPlaying = false;
+
+  document.addEventListener("click", () => {
+    if (!isPlaying) {
+      bgm.play().then(() => {
+        isPlaying = true;
+        hint.textContent = "tap to mute 🔇";
+      }).catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
+    } else {
+      bgm.pause();
+      isPlaying = false;
+      hint.textContent = "tap for music 🌊";
+    }
+  });
+</script>
+
+
+
+
+<!-- back to home  -->
+<a href="landing.html" class="back">Back to Homepage</a>
+
+
+     <!--Tap for music-->
+<div class="tap-for-music">tap for music 🌊/🔇</div>
+
+
+<div class="learn-wrapper">
+  <h1 class="title">Puff At<span class="highlight">a</span>nomy</h1>
+
+  <div class="stage">
+
+  
+
+  
+    <!--fish-->
+    <div class="fish-wrapper">
+      <img src="puffer-plain-nofin.png" class="fish-base" alt="pufferfish">
+
+      <!-- organs follow the fish -->
+      <div class="organs">
+        <img class="organ" src="gills.png" data-key="gills" style="--x:25.9%; --y:62.1%; --w:9%;">
+        <img class="organ" src="stomach.png"data-key="stomach" style="--x:28%; --y:59%; --w:18%;">
+        <img class="organ" src="heart.png" data-key="heart"style="--x:29%; --y:70%; --w:9%;">
+        <img class="organ" src="liver.png" data-key="liver"style="--x:42%; --y:69%; --w:17%;">
+        <img class="organ" src="intestine.png" data-key="intestine"style="--x:55%; --y:75%; --w:21%;">
+        <img class="organ" src="spleen.png" data-key="spleen"style="--x:42%; --y:62%; --w:7%;">
+        <img class="organ" src="ovary.png" data-key="ovary"style="--x:58%; --y:62%; --w:26%;">
+        <img class="organ" src="kidney.png" data-key="kidney"style="--x:54%; --y:48%; --w:39%;">
+        <img class="organ" src="swim-bladder.png" data-key="swim-bladder"style="--x:57%; --y:53%; --w:33%;">
+        <img class="organ" src="urinary-bladder.png" data-key="urinary-bladder"style="--x:74%; --y:54%; --w:8%;">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+  <!--water droplet audio-->
+<audio id="dropSfx" src="water-drop.mp3" preload="auto"></audio>
+
+
+
+
+<!-- text container (full screen) -->
+<div id="textArea"></div>
+
+<!-- clear button -->
+<button id="clearBtn" class="clear-btn">Clear texts</button>
+
+
+
+</body>
+</html>

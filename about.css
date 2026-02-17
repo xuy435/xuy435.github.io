@@ -1,0 +1,157 @@
+body{
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: white;
+}
+
+/* -------- Centered Title -------- */
+#wave-text{
+  position: fixed;
+  top: 42%;              /* 标题偏上：想更靠上调小，比如 38% */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+
+  font-size: 3em;
+  font-family: "Righteous";
+  letter-spacing: 0.08em;
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+  transform: translate(-50%, -50%) translateY(60px);
+}
+#wave-text span{ display:inline-block; }
+
+/* -------- Centered Box -------- */
+#fish-box{
+  position: fixed;
+  top: 58%;              /* 文本框偏下：想更靠下调大，比如 62% */
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: min(520px, 78vw);
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid rgba(247,176,229,0.35);
+  background: rgba(247,176,229,0.10);
+  transform: translate(-50%, -50%) translateY(250px);
+}
+
+#fish-box p{
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 2em;
+  color: rgba(0,0,0,0.65);
+}
+
+/* -------- play/pause button -------- */
+#toggle{
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  z-index: 999;
+
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  background: rgba(247,176,229,0.22);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  user-select: none;
+  outline: none;
+  border: none;
+
+  transform: translateX(40px); /* 你想往右一点就保留 */
+}
+#toggle:hover{ background: #f7b0e55e; }
+
+#toggle .icon{
+  width: 18px;
+  height: 18px;
+  position: relative;
+}
+
+/* pause: || */
+#toggle.pause .icon::before,
+#toggle.pause .icon::after{
+  content:"";
+  position:absolute;
+  top:0;
+  width: 5px;
+  height: 18px;
+  background: #f7b0e5;
+}
+#toggle.pause .icon::before{ left: 2px; }
+#toggle.pause .icon::after{ right: 2px; }
+
+/* play: ▶ (不透明，能看见) */
+#toggle.play .icon{
+  width: 0;
+  height: 0;
+  border-top: 9px solid transparent;
+  border-bottom: 9px solid transparent;
+  border-left: 16px solid #f7b0e5;
+  margin-left: 3px;
+}
+
+#toggle:focus,
+#toggle:active{
+  outline: none;
+  box-shadow: none;
+}
+
+/* -------- swimming fish layer -------- */
+#fish-layer{
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* content above fish layer */
+#school, #fish-box, #wave-text{
+  position: relative;
+  z-index: 2;
+}
+
+/* each fish */
+.fish{
+  position: absolute;
+  width: var(--size, 200px);
+  height: auto;
+  opacity: 0.9;
+  user-select: none;
+  -webkit-user-drag: none;
+  pointer-events: none;
+}
+
+/* back home link */
+.back-home{
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 999;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}

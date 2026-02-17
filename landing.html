@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <link rel="stylesheet" href="landing.css">
+
+    <link rel="icon" type="image/png" href="bubbles.png">
+
+
+    <title>Puff Lab</title>
+</head>
+
+
+<body>
+
+    <!--audio: backgrond music-->
+<audio id="bgm" loop>
+  <source src="landing-music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+  const bgm = document.getElementById("bgm");
+  const hint = document.querySelector(".tap-for-music");
+
+  let isPlaying = false;
+
+  document.addEventListener("click", () => {
+    if (!isPlaying) {
+      bgm.play().then(() => {
+        isPlaying = true;
+        hint.textContent = "tap to mute 🔇";
+      }).catch(err => {
+        console.log("Autoplay blocked:", err);
+      });
+    } else {
+      bgm.pause();
+      isPlaying = false;
+      hint.textContent = "tap for music 🌊";
+    }
+  });
+</script>
+
+
+
+<!--Header-->
+<h1 class="title">
+    Puff L<span class="highlight">a</span>b
+</h1>
+
+<h2>
+    Learn About Puff Anatomy
+</h2>
+
+
+
+<!-- fishes -->
+<div class="puffer">
+  <img src="puffer-orignal.png" class="puffer-img base" alt="pufferfish">
+  <img src="puffer-organs.png" class="puffer-img organs" alt="pufferfish organs">
+</div>
+
+<div class="puffer fish-1">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-2">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-3">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-4">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-5">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-6">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-7">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-organs.png" class="puffer-img organs">
+</div>
+
+<div class="puffer fish-8">
+  <img src="puffer-orignal.png" class="puffer-img base">
+  <img src="puffer-poison.png" class="puffer-img organs">
+</div>
+
+
+
+<!--page transfer-->
+<script>
+  document.querySelectorAll('.puffer').forEach(puffer => {
+    puffer.addEventListener('click', () => {
+      if (puffer.classList.contains('fish-8')) {
+        window.location.href = 'easter-egg.html';
+      } else {
+        window.location.href = 'learn.html';
+      }
+    });
+  });
+</script>
+
+
+
+
+<!-- bubbles -->
+ <div class="bubbles">
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+  <span class="bubble"></span>
+</div>
+
+
+
+
+ <!--Tap for music-->
+<div class="tap-for-music">tap anywhere for music 🌊</div>
+
+<!--Double click on one of us-->
+<div class="double-click">click on a 🐟 to learn </div>
+
+<!--@yue xu-->
+<div class="yuexu"> Web by: Yue Xu </div>
+
+<!-- about page -->
+<a href="about.html" class="about">About</a>
+
+</body>
+</html>

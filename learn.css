@@ -1,0 +1,273 @@
+
+html, body{
+  height: 100%;
+  margin: 0;
+  overflow: hidden;  /* 关键：禁止滚动 */
+}
+
+
+@font-face {
+  font-family: "Righteous";
+  src: url("Righteous-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+     font-size: 5em;
+    text-align: center;
+    font-family: "Righteous", sans-serif;
+    margin-bottom: 0.1em;}
+    .title .highlight {
+  color: #D9E8F1;
+}
+
+.title {
+  font-size: 4em;
+  font-family: "Righteous", sans-serif;
+  text-align: center;}
+
+
+
+.learn-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+
+
+.tap-for-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #555;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.back {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+@font-face {
+  font-family: "Righteous";
+  src: url("Righteous-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+h1{
+     font-size: 5em;
+    text-align: center;
+    font-family: "Righteous", sans-serif;
+    margin-bottom: 0.1em;}
+    .title .highlight {
+  color: #D9E8F1;
+}
+
+.title {
+  font-size: 4em;
+  font-family: "Righteous", sans-serif;
+  text-align: center;}
+
+
+
+.learn-wrapper{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+}
+
+
+
+
+.tap-for-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #555;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+
+.fish-wrapper{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+
+.stage{
+  width: min(900px, 92vw);
+  aspect-ratio: 1.4 / 1;
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  place-items: center;
+  box-sizing: border-box;
+  transform: translateY(-4%);
+}
+
+
+.fish-base{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+  user-select: none;
+  transform: translateX(30px);
+  position: relative;
+  z-index: 10; 
+}
+
+.organs{
+  position: absolute;
+  inset: 0;
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+}
+
+.organ{
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+}
+
+
+.organ.clicked {
+  transform: translate(-50%, -50%) scale(1.3);
+  transition: transform 0.25s ease;
+}
+
+
+
+
+
+/* text box */
+
+/* text area sits under fish */
+.text-area {
+  position: absolute;
+  inset: 0;
+  overflow: visible;
+  z-index: 5; /* 低于 fish */
+}
+
+#textArea {
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+/* fish stays on top */
+.fish-base {
+  position: relative;
+  z-index: 10;
+}
+
+/* text box */
+.text-box
+{
+  position: fixed;
+  max-width: 220px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #ffd8e8;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.14);
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  line-height: 1.3;
+
+  /* draggable needs pointer events */
+  pointer-events: auto;
+  cursor: grab;
+  z-index: 6;  
+
+  /* fall animation uses CSS var */
+  top: -120px;
+  will-change: transform, top;
+  animation: fallBounce 900ms cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+
+.text-box.falling{
+  animation: drop 0.9s cubic-bezier(.2,.9,.2,1) forwards;
+}
+
+/* 落地后不再受 animation 影响 */
+.text-box.settled{
+  animation: none;
+}
+
+
+/* drop + bounce animation */
+@keyframes fallBounce{
+  0%   { transform: translateY(0); }
+  80%  { top: var(--targetY); transform: translateY(0); }
+  90%  { top: calc(var(--targetY) - 12px); }
+  100% { top: var(--targetY); }
+}
+
+
+/* dragging state */
+.text-box.dragging {
+  opacity: 0.8;
+  cursor: grabbing;
+}
+
+/* clear button */
+.clear-btn{
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #f7b0e5;
+  opacity: 0.7;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(255, 216, 232, 0.0); 
+  border: none;
+  outline: none;
+  box-shadow: none;}

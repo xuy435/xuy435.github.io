@@ -1,0 +1,237 @@
+
+@font-face {
+  font-family: "Righteous";
+  src: url("Righteous-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* h1 */ 
+.title{
+    font-size: 5em;
+    text-align: center;
+    font-family: "Righteous", sans-serif;
+    margin-bottom: 0.1em;}
+    
+    .title .highlight {
+  color: #D9E8F1;
+}
+
+h2{
+  font-size: 16px;
+  text-align: center;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 0.7;
+  margin-top: 0;
+}
+
+.puffer{ z-index: 3; }
+.tap-for-music{ z-index: 4; }
+
+/* wrapper */
+.puffer{
+  position: fixed;
+  top: var(--y, 50%);
+  left: 100%;
+  width: var(--size, 300px);
+  aspect-ratio: 3 / 1;
+
+  transform: translateY(-50%);
+  cursor: pointer;
+
+  animation:
+    swim var(--speed, 12s) linear infinite,
+    float 3s ease-in-out infinite;
+}
+
+.puffer:hover{
+  cursor: zoom-in;
+}
+
+
+.fish-1{
+  --size: 320px;
+  --y: 10%;
+  --speed: 10s;}
+.fish-2{
+  --size: 120px;
+  --y: 15%;
+  --speed: 7s;}
+.fish-3{
+  --size: 180px;
+  --y: 20%;
+  --speed: 5s;}
+.fish-4{
+  --size: 180px;
+  --y: 40%;
+  --speed: 6s;}
+.fish-5{
+  --size: 500px;
+  --y: 55%;
+  --speed: 8s;}
+.fish-6{
+  --size: 320px;
+  --y: 60%;
+  --speed: 5.5s;}
+.fish-7{
+  --size: 100px;
+  --y: 80%;
+  --speed: 12s;}
+.fish-8{
+  --size: 70px;
+  --y: 90%;
+  --speed: 8s;}
+
+
+
+/* 两张图叠在一起*/
+.puffer-img{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  pointer-events: none;
+}
+
+
+/* hover 切换图像 */
+.puffer-img.base{opacity: 1;}
+.puffer-img.organs{opacity: 0;}
+
+.puffer:hover .puffer-img.base{opacity: 0;}
+.puffer:hover .puffer-img.organs{opacity: 1;}
+
+
+/* 从右游到左⬅️ */
+@keyframes swim{
+  0%   { left: 100%; }
+  100% { left: -420px; }
+}
+
+/* 上下漂浮 */
+@keyframes float{
+  0%   { transform: translateY(-50%) translateY(0); }
+  50%  { transform: translateY(-50%) translateY(-40px); }
+  100% { transform: translateY(-50%) translateY(0); }
+}
+
+
+
+/* bubble*/
+/* container */
+.bubbles{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* 泡泡外观 */
+.bubble{
+  position: absolute;
+  bottom: -40px;
+
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+
+  background: rgba(200, 230, 255, 0.85);
+  filter: blur(0.7px);
+
+  animation: rise 8s linear infinite;
+}
+
+/* 不同动作 */
+.bubble:nth-child(1){ left: 10%; width: 16px;  height: 16px;  animation-duration: 6s; }
+.bubble:nth-child(2){ left: 30%; width: 14px; height: 14px; animation-duration: 9s; }
+.bubble:nth-child(3){ left: 50%; width: 25px; height: 25px; animation-duration: 7s; }
+.bubble:nth-child(4){ left: 70%; width: 18px; height: 18px; animation-duration: 11s; }
+.bubble:nth-child(5){ left: 85%; width: 26px;  height: 26px;  animation-duration: 5s; }
+.bubble:nth-child(5){ left: 55%; width: 20px;  height: 20px;  animation-duration: 3s; }
+.bubble:nth-child(4){ left: 10%; width: 18px; height: 18px; animation-duration: 11s; }
+.bubble:nth-child(5){ left: 55%; width: 6px;  height: 6px;  animation-duration: 5s; }
+.bubble:nth-child(5){ left: 95%; width: 25px;  height: 25px;  animation-duration: 3s; }
+.bubble:nth-child(5){ left: 75%; width: 6px;  height: 6px;  animation-duration: 7s; }
+.bubble:nth-child(5){ left: 85%; width: 20px;  height: 20px;  animation-duration: 3s; }
+
+/* 升起效果 */
+@keyframes rise{
+  0%   { transform: translateY(0)      translateX(0)    scale(0.8); opacity: 0; }
+  10%  { opacity: 0.6; }
+  50%  { transform: translateY(-55vh)  translateX(10px) scale(1); }
+  100% { transform: translateY(-110vh) translateX(-10px) scale(1.2); opacity: 0; }
+}
+
+
+
+
+
+.tap-for-music {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #555;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.double-click {
+  position: fixed;
+  bottom: 35px;
+  right: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #555;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.yuexu {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.about {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+
+  color: #f7b0e5;
+  opacity: 0.7;
+
+  cursor: pointer;
+  user-select: none;
+}
+
