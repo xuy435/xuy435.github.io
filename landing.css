@@ -1,104 +1,95 @@
+/* ============================= */
+/*        自定义字体加载         */
+/* ============================= */
 
+/* 这是给主标题 Puff Lab 用的字体 */
 @font-face {
-  font-family: "Righteous";
-  src: url("Righteous-Regular.ttf") format("truetype");
+  font-family: "Righteous"; /* 之后用 font-family: "Righteous" 调用 */
+  src: url("Righteous-Regular.ttf") format("truetype"); /* 字体文件路径 */
   font-weight: normal;
   font-style: normal;
 }
 
-/* h1 */ 
+
+/* ============================= */
+/*           首页标题            */
+/* ============================= */
+
+/* 主标题 Puff Lab */
 .title{
-    font-size: 5em;
-    text-align: center;
-    font-family: "Righteous", sans-serif;
-    margin-bottom: 0.1em;}
-    
-    .title .highlight {
-  color: #D9E8F1;
+  font-size: 5em;                     /* 标题大小 */
+  text-align: center;                 /* 居中 */
+  font-family: "Righteous", sans-serif; /* 使用自定义字体 */
+  margin-bottom: 0.1em;               /* 标题下方间距 */
 }
 
+/* 标题里高亮的 a */
+.title .highlight {
+  color: #D9E8F1;                     /* 改变颜色 */
+}
+
+/* 副标题 Learn About Puff Anatomy */
 h2{
-  font-size: 16px;
+  font-size: 16px;                    
   text-align: center;
   font-family: sans-serif;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.08em;              /* 字母间距 */
   color: #555;
   opacity: 0.7;
   margin-top: 0;
 }
 
-.puffer{ z-index: 3; }
-.tap-for-music{ z-index: 4; }
 
-/* wrapper */
+/* ============================= */
+/*           鱼动画系统          */
+/* ============================= */
+
+/* 每条鱼的外层容器 */
 .puffer{
-  position: fixed;
-  top: var(--y, 50%);
-  left: 100%;
-  width: var(--size, 300px);
-  aspect-ratio: 3 / 1;
-
-  transform: translateY(-50%);
+  position: fixed;                    /* 固定定位（脱离文档流） */
+  top: var(--y, 50%);                 /* 垂直位置（变量控制） */
+  left: 100%;                         /* 从右侧开始 */
+  width: var(--size, 300px);          /* 宽度（变量控制） */
+  aspect-ratio: 3 / 1;                /* 保持比例 */
+  transform: translateY(-50%);        /* 垂直居中 */
   cursor: pointer;
 
+  /* 两个动画 */
   animation:
-    swim var(--speed, 12s) linear infinite,
-    float 3s ease-in-out infinite;
+    swim var(--speed, 12s) linear infinite, /* 横向游动 */
+    float 3s ease-in-out infinite;          /* 上下漂浮 */
+
+  pointer-events: none;               /* 不阻挡其他元素点击 */
+  z-index: 3;                         /* 层级 */
 }
 
-.puffer:hover{
-  cursor: zoom-in;
-}
+/* 每条鱼的不同大小 / 位置 / 速度 */
+.fish-1{ --size: 320px; --y: 10%; --speed: 10s;}
+.fish-2{ --size: 120px; --y: 15%; --speed: 5s;}
+.fish-3{ --size: 180px; --y: 20%; --speed: 4s;}
+.fish-4{ --size: 180px; --y: 40%; --speed: 6s;}
+.fish-5{ --size: 500px; --y: 55%; --speed: 4s;}
+.fish-6{ --size: 320px; --y: 60%; --speed: 5.5s;}
+.fish-7{ --size: 100px; --y: 80%; --speed: 6s;}
+.fish-8{ --size: 70px; --y: 90%; --speed: 8s;}
+.fish-9{ --size: 180px; --y: 70%; --speed: 3s;}
+.fish-10{ --size: 90px; --y: 50%; --speed: 5s;}
+.fish-11{ --size: 100px; --y: 30%; --speed: 7s;}
+.fish-12{ --size: 300px; --y: 10%; --speed: 8s;}
 
 
-.fish-1{
-  --size: 320px;
-  --y: 10%;
-  --speed: 10s;}
-.fish-2{
-  --size: 120px;
-  --y: 15%;
-  --speed: 7s;}
-.fish-3{
-  --size: 180px;
-  --y: 20%;
-  --speed: 5s;}
-.fish-4{
-  --size: 180px;
-  --y: 40%;
-  --speed: 6s;}
-.fish-5{
-  --size: 500px;
-  --y: 55%;
-  --speed: 8s;}
-.fish-6{
-  --size: 320px;
-  --y: 60%;
-  --speed: 5.5s;}
-.fish-7{
-  --size: 100px;
-  --y: 80%;
-  --speed: 12s;}
-.fish-8{
-  --size: 70px;
-  --y: 90%;
-  --speed: 8s;}
-
-
-
-/* 两张图叠在一起*/
+/* 鱼图片本身 */
 .puffer-img{
-  position: absolute;
+  position: absolute;  /* 叠在一起 */
   inset: 0;
   width: 100%;
   height: auto;
   object-fit: contain;
   display: block;
-  pointer-events: none;
+  pointer-events: auto; /* 图片本身可以被点击 */
 }
 
-
-/* hover 切换图像 */
+/* hover 切换内脏图 */
 .puffer-img.base{opacity: 1;}
 .puffer-img.organs{opacity: 0;}
 
@@ -106,132 +97,319 @@ h2{
 .puffer:hover .puffer-img.organs{opacity: 1;}
 
 
-/* 从右游到左⬅️ */
+/* 横向游动动画 */
 @keyframes swim{
   0%   { left: 100%; }
   100% { left: -420px; }
 }
 
-/* 上下漂浮 */
+/* 上下漂浮动画 */
 @keyframes float{
   0%   { transform: translateY(-50%) translateY(0); }
-  50%  { transform: translateY(-50%) translateY(-40px); }
+  50%  { transform: translateY(-50%) translateY(-100px); }
   100% { transform: translateY(-50%) translateY(0); }
 }
 
 
+/* ============================= */
+/*            泡泡系统           */
+/* ============================= */
 
-/* bubble*/
-/* container */
+/* 泡泡容器 */
 .bubbles{
   position: fixed;
   inset: 0;
-  pointer-events: none;
+  pointer-events: none; /* 不影响点击 */
   overflow: hidden;
   z-index: 0;
 }
 
-/* 泡泡外观 */
+/* 单个泡泡样式 */
 .bubble{
   position: absolute;
   bottom: -40px;
-
   width: 40px;
   height: 40px;
   border-radius: 50%;
-
   background: rgba(200, 230, 255, 0.85);
   filter: blur(0.7px);
-
   animation: rise 8s linear infinite;
 }
 
-/* 不同动作 */
-.bubble:nth-child(1){ left: 10%; width: 16px;  height: 16px;  animation-duration: 6s; }
-.bubble:nth-child(2){ left: 30%; width: 14px; height: 14px; animation-duration: 9s; }
-.bubble:nth-child(3){ left: 50%; width: 25px; height: 25px; animation-duration: 7s; }
-.bubble:nth-child(4){ left: 70%; width: 18px; height: 18px; animation-duration: 11s; }
-.bubble:nth-child(5){ left: 85%; width: 26px;  height: 26px;  animation-duration: 5s; }
-.bubble:nth-child(5){ left: 55%; width: 20px;  height: 20px;  animation-duration: 3s; }
-.bubble:nth-child(4){ left: 10%; width: 18px; height: 18px; animation-duration: 11s; }
-.bubble:nth-child(5){ left: 55%; width: 6px;  height: 6px;  animation-duration: 5s; }
-.bubble:nth-child(5){ left: 95%; width: 25px;  height: 25px;  animation-duration: 3s; }
-.bubble:nth-child(5){ left: 75%; width: 6px;  height: 6px;  animation-duration: 7s; }
-.bubble:nth-child(5){ left: 85%; width: 20px;  height: 20px;  animation-duration: 3s; }
-
-/* 升起效果 */
+/* 泡泡升起动画 */
 @keyframes rise{
-  0%   { transform: translateY(0)      translateX(0)    scale(0.8); opacity: 0; }
+  0%   { transform: translateY(0) scale(0.8); opacity: 0; }
   10%  { opacity: 0.6; }
-  50%  { transform: translateY(-55vh)  translateX(10px) scale(1); }
-  100% { transform: translateY(-110vh) translateX(-10px) scale(1.2); opacity: 0; }
+  50%  { transform: translateY(-55vh) scale(1); }
+  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
 }
 
 
-
-
+/* ============================= */
+/*          角落提示文字         */
+/* ============================= */
 
 .tap-for-music {
   position: fixed;
   bottom: 20px;
   right: 20px;
-
   font-size: 12px;
-  font-family: sans-serif;
   letter-spacing: 0.08em;
-
   color: #555;
   opacity: 0.7;
-
   cursor: pointer;
-  user-select: none;
 }
 
 .double-click {
   position: fixed;
   bottom: 35px;
   right: 20px;
-
   font-size: 12px;
-  font-family: sans-serif;
   letter-spacing: 0.08em;
-
   color: #555;
   opacity: 0.7;
-
-  cursor: pointer;
-  user-select: none;
 }
 
 .yuexu {
   position: fixed;
   bottom: 20px;
   left: 20px;
-
   font-size: 12px;
-  font-family: sans-serif;
   letter-spacing: 0.08em;
-
   color: #f7b0e5;
   opacity: 0.7;
-
-  cursor: pointer;
-  user-select: none;
 }
+
+
+/* ============================= */
+/*           About 按钮          */
+/* ============================= */
 
 .about {
   position: fixed;
   top: 20px;
   left: 20px;
-
   font-size: 12px;
-  font-family: sans-serif;
   letter-spacing: 0.08em;
-
   color: #f7b0e5;
-  opacity: 0.7;
+
+  background: none; /* 去掉默认背景 */
+  border: none;     /* 去掉按钮边框 */
+  padding: 0;       /* 去掉内边距 */
 
   cursor: pointer;
-  user-select: none;
+  z-index: 99999;   /* 保证在最上层 */
+}
+
+
+/* ============================= */
+/*           弹窗系统            */
+/* ============================= */
+
+/* 弹窗遮罩层 */
+.modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  background: none;
+  backdrop-filter: none;
+
+}
+
+/* 默认隐藏 */
+.hidden {
+  display: none;
+}
+
+/* 弹窗白色卡片 */
+.modal-content {
+  background: white;
+  padding: 40px;
+  width: min(500px, 80vw);
+  border-radius: 20px;
+  text-align: center;
+  animation: pop 0.3s ease;
+  background: white;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+
+  /* 控制弹窗内文字样式 */
+  margin: 0;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1em;
+  font-size: 0.8em;                    
+  text-align: center;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;              /* 字母间距 */
+  color: #555;
+  opacity: 0.7;
+  margin-top: 0;
+}
+
+/* 弹窗出现动画 */
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* 关闭按钮 */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f7b0e5;
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+
+.about,
+.double-click,
+.yuexu,
+.tap-for-music {
+  font-size: 12px;
+  font-family: sans-serif;      /* 跟 About 一样 */
+  letter-spacing: 0.08em;
+  color: #f7b0e5;               /* 统一颜色 */
+  opacity: 0.7;
+}
+
+
+
+#dark-layer.flicker {
+  #dark-layer.flicker {
+  animation: flicker 0.08s infinite alternate;
+}
+
+@keyframes flicker {
+  from { opacity: 0.6; }
+  to { opacity: 0.95; }
+}
+
+}
+
+@keyframes flicker {
+  from { opacity: 0.7; }
+  to { opacity: 0.9; }
+}
+
+
+
+@keyframes flicker {
+  from { filter: brightness(1); }
+  to { filter: brightness(0.7); }
+}
+
+
+#dark-layer {
+  position: fixed;
+  inset: 0;
+  background: #001a33;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  z-index: 5;   /* 🔥 改大 */
+
+}
+
+.tap-for-music,
+.double-click,
+.yuexu {
+  transform: translateZ(0);
+}
+
+
+
+/*finish game modal*/
+
+.share-text {
+  margin-top: 10px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.share-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+#share-link {
+  width: 70%;
+  font-size: 12px;
+  padding: 5px;
+}
+
+.copy-icon {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.copy-icon:hover {
+  transform: scale(1.1);
+}
+
+
+.try-btn {
+  margin-top: 20px;
+  padding: 6px 14px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  background: #f7b0e5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+}
+
+
+.mama {
+  --size: 400px;
+  --y: 30%;
+  --speed: 10s;
+  z-index: 4;
+}
+
+.mama-message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 20px 30px;
+  border-radius: 15px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  z-index: 100;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 1;
+}
+
+
+
+
+.mama {
+  --size: 250px;
+  --y: 35%;
+  --speed: 5s;
+
+  left: 100%; /* 从右侧开始 */
+  animation:
+    swim 5s linear infinite,
+    float 3s ease-in-out infinite;
+
+  z-index: 4;
 }
 
