@@ -19,7 +19,7 @@ h1{
     font-family: "Righteous", sans-serif;
     margin-bottom: 0.1em;}
     .title .highlight {
-  color: #D9E8F1;
+  color: #9eccf9;
 }
 
 .title {
@@ -65,7 +65,7 @@ h1{
   font-family: sans-serif;
   letter-spacing: 0.08em;
 
-  color: #f7b0e5;
+  color: #3f9cfa;
   opacity: 0.7;
 
   cursor: pointer;
@@ -228,6 +228,108 @@ h1{
   will-change: transform, top;
   animation: fallBounce 900ms cubic-bezier(.2,.9,.2,1) forwards;
 }
+
+.heart-box{
+  background: #d1efd5;
+  border: 2px solid #1da72d;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;}
+
+.gills-box{
+  background: #f8e5f7;
+  border: 2px solid #F784EF;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.stomach-box{
+  background: #fdf7c4;
+  border: 2px solid #EDD70A;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.liver-box{
+  background: #e0f6f5;
+  border: 2px solid #66F2EE;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.spleen-box{
+  background: #f8deda;
+  border: 2px solid #FF5539;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.swim-bladder-box{
+  background: #e3d4ee;
+  border: 2px solid #C38BEA;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.kidney-box{
+  background: #e6fac4;
+  border: 2px solid #8EDD05;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.urinary-bladder-box{
+  background: rgb(218, 246, 255);
+  border: 2px solid #21DBF4;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.intestine-box{
+  background: #fae6ce;
+  border: 2px solid #f49521;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+.ovary-box{
+  background: #ffe6f0;
+  border: 2px solid #ff8ac6;
+
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #555;
+  opacity: 1;
+}
+
 
 
 .text-box.falling{

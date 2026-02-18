@@ -1,69 +1,61 @@
-/* ============================= */
-/*        自定义字体加载         */
-/* ============================= */
+/* ================================= */
+/*              FONT                 */
+/* ================================= */
 
-/* 这是给主标题 Puff Lab 用的字体 */
 @font-face {
-  font-family: "Righteous"; /* 之后用 font-family: "Righteous" 调用 */
-  src: url("Righteous-Regular.ttf") format("truetype"); /* 字体文件路径 */
-  font-weight: normal;
-  font-style: normal;
+  font-family: "Righteous";
+  src: url("Righteous-Regular.ttf") format("truetype");
 }
 
 
-/* ============================= */
-/*           首页标题            */
-/* ============================= */
 
-/* 主标题 Puff Lab */
+
+/* ================================= */
+/*              TITLE                */
+/* ================================= */
+
 .title{
-  font-size: 5em;                     /* 标题大小 */
-  text-align: center;                 /* 居中 */
-  font-family: "Righteous", sans-serif; /* 使用自定义字体 */
-  margin-bottom: 0.1em;               /* 标题下方间距 */
+  font-size: 5em;
+  text-align: center;
+  font-family: "Righteous", sans-serif;
+  margin-bottom: 0.1em;
 }
 
-/* 标题里高亮的 a */
 .title .highlight {
-  color: #D9E8F1;                     /* 改变颜色 */
+  color: #9eccf9;
 }
 
-/* 副标题 Learn About Puff Anatomy */
 h2{
-  font-size: 16px;                    
+  font-size: 16px;
   text-align: center;
   font-family: sans-serif;
-  letter-spacing: 0.08em;              /* 字母间距 */
+  letter-spacing: 0.08em;
   color: #555;
   opacity: 0.7;
   margin-top: 0;
 }
 
 
-/* ============================= */
-/*           鱼动画系统          */
-/* ============================= */
+/* ================================= */
+/*          FISH SYSTEM              */
+/* ================================= */
 
-/* 每条鱼的外层容器 */
 .puffer{
-  position: fixed;                    /* 固定定位（脱离文档流） */
-  top: var(--y, 50%);                 /* 垂直位置（变量控制） */
-  left: 100%;                         /* 从右侧开始 */
-  width: var(--size, 300px);          /* 宽度（变量控制） */
-  aspect-ratio: 3 / 1;                /* 保持比例 */
-  transform: translateY(-50%);        /* 垂直居中 */
+  position: fixed;
+  top: var(--y, 50%);
+  left: 100%;
+  width: var(--size, 300px);
+  aspect-ratio: 3 / 1;
+  transform: translateY(-50%);
   cursor: pointer;
+  z-index: 3;
 
-  /* 两个动画 */
   animation:
-    swim var(--speed, 12s) linear infinite, /* 横向游动 */
-    float 3s ease-in-out infinite;          /* 上下漂浮 */
-
-  pointer-events: none;               /* 不阻挡其他元素点击 */
-  z-index: 3;                         /* 层级 */
+    swimFish var(--speed, 12s) linear infinite,
+    floatFish 3s ease-in-out infinite;
 }
 
-/* 每条鱼的不同大小 / 位置 / 速度 */
+/* Individual Fish Settings */
 .fish-1{ --size: 320px; --y: 10%; --speed: 10s;}
 .fish-2{ --size: 120px; --y: 15%; --speed: 5s;}
 .fish-3{ --size: 180px; --y: 20%; --speed: 4s;}
@@ -77,54 +69,51 @@ h2{
 .fish-11{ --size: 100px; --y: 30%; --speed: 7s;}
 .fish-12{ --size: 300px; --y: 10%; --speed: 8s;}
 
-
-/* 鱼图片本身 */
 .puffer-img{
-  position: absolute;  /* 叠在一起 */
+  position: absolute;
   inset: 0;
   width: 100%;
-  height: auto;
   object-fit: contain;
-  display: block;
-  pointer-events: auto; /* 图片本身可以被点击 */
+  pointer-events: auto;
 }
 
-/* hover 切换内脏图 */
 .puffer-img.base{opacity: 1;}
 .puffer-img.organs{opacity: 0;}
 
-.puffer:hover .puffer-img.base{opacity: 0;}
-.puffer:hover .puffer-img.organs{opacity: 1;}
+.puffer:hover .base{opacity: 0;}
+.puffer:hover .organs{opacity: 1;}
 
 
-/* 横向游动动画 */
-@keyframes swim{
-  0%   { left: 100%; }
-  100% { left: -420px; }
+/* Mama */
+.mama {
+  --size: 250px;
+  --y: 35%;
+  --speed: 5s;
+  z-index: 4;
 }
 
-/* 上下漂浮动画 */
-@keyframes float{
-  0%   { transform: translateY(-50%) translateY(0); }
-  50%  { transform: translateY(-50%) translateY(-100px); }
-  100% { transform: translateY(-50%) translateY(0); }
+/*leaning fish*/
+.learning{
+  --size: 260px;
+  --y: 50%;
+  --speed: 7s;
+  z-index: 6;
 }
 
 
-/* ============================= */
-/*            泡泡系统           */
-/* ============================= */
 
-/* 泡泡容器 */
+/* ================================= */
+/*             BUBBLES               */
+/* ================================= */
+
 .bubbles{
   position: fixed;
   inset: 0;
-  pointer-events: none; /* 不影响点击 */
+  pointer-events: none;
   overflow: hidden;
   z-index: 0;
 }
 
-/* 单个泡泡样式 */
 .bubble{
   position: absolute;
   bottom: -40px;
@@ -133,30 +122,29 @@ h2{
   border-radius: 50%;
   background: rgba(200, 230, 255, 0.85);
   filter: blur(0.7px);
-  animation: rise 8s linear infinite;
-}
-
-/* 泡泡升起动画 */
-@keyframes rise{
-  0%   { transform: translateY(0) scale(0.8); opacity: 0; }
-  10%  { opacity: 0.6; }
-  50%  { transform: translateY(-55vh) scale(1); }
-  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+  animation: bubbleRiseMain 8s linear infinite;
 }
 
 
-/* ============================= */
-/*          角落提示文字         */
-/* ============================= */
+/* ================================= */
+/*         CORNER TEXT               */
+/* ================================= */
+
+.about,
+.double-click,
+.yuexu,
+.tap-for-music {
+  font-size: 12px;
+  font-family: sans-serif;
+  letter-spacing: 0.08em;
+  color: #3f9cfa;
+  opacity: 0.7;
+}
 
 .tap-for-music {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #555;
-  opacity: 0.7;
   cursor: pointer;
 }
 
@@ -164,49 +152,29 @@ h2{
   position: fixed;
   bottom: 35px;
   right: 20px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #555;
-  opacity: 0.7;
 }
 
 .yuexu {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #f7b0e5;
-  opacity: 0.7;
 }
-
-
-/* ============================= */
-/*           About 按钮          */
-/* ============================= */
 
 .about {
   position: fixed;
   top: 20px;
   left: 20px;
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: #f7b0e5;
-
-  background: none; /* 去掉默认背景 */
-  border: none;     /* 去掉按钮边框 */
-  padding: 0;       /* 去掉内边距 */
-
+  background: none;
+  border: none;
   cursor: pointer;
-  z-index: 99999;   /* 保证在最上层 */
+  z-index: 999;
 }
 
 
-/* ============================= */
-/*           弹窗系统            */
-/* ============================= */
+/* ================================= */
+/*            MODAL                  */
+/* ================================= */
 
-/* 弹窗遮罩层 */
 .modal {
   position: fixed;
   inset: 0;
@@ -214,100 +182,228 @@ h2{
   justify-content: center;
   align-items: center;
   z-index: 200;
-  background: none;
-  backdrop-filter: none;
-
 }
 
-/* 默认隐藏 */
 .hidden {
   display: none;
 }
 
-/* 弹窗白色卡片 */
 .modal-content {
   background: white;
   padding: 40px;
   width: min(500px, 80vw);
   border-radius: 20px;
   text-align: center;
-  animation: pop 0.3s ease;
-  background: white;
   box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+  animation: pop 0.3s ease;
+}
 
-  /* 控制弹窗内文字样式 */
-  margin: 0;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-  font-size: 14px;
-  line-height: 1em;
-  font-size: 0.8em;                    
-  text-align: center;
+
+
+
+/* ================================= */
+/*          ABOUT BOX                */
+/* ================================= */
+
+
+.about-box {
+  position: relative;
+  width: 700px;
+  max-width: 90vw;
+  padding: 80px 70px;
+  background: white;
+  border-radius: 28px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+  overflow: hidden;
+  text-align: left;
+}
+
+
+/* -------- Body Text -------- */
+
+.about-box h2,
+.about-box p {
+  text-align: left;
   font-family: sans-serif;
-  letter-spacing: 0.08em;              /* 字母间距 */
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
   color: #555;
   opacity: 0.7;
   margin-top: 0;
 }
 
-/* 弹窗出现动画 */
-@keyframes pop {
-  from { transform: scale(0.8); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+
+/* ================================= */
+/*        FLOATING CREATURES         */
+/* ================================= */
+
+.about-decor {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
 }
 
-/* 关闭按钮 */
+.mini {
+  position: absolute;
+  width: 80px;                 /* 变大 */
+  opacity: 0.9;
+  animation: floatMiniBig 8s ease-in-out infinite alternate;
+}
+
+.sea-1 { top: 12%; left: 8%; animation-delay: 0s; }
+.sea-2 { top: 75%; left: 18%; animation-delay: 2s; }
+.sea-3 { top: 30%; right: 12%; animation-delay: 4s; }
+.sea-4 { bottom: 18%; right: 18%; animation-delay: 6s; }
+
+
+@keyframes floatMiniBig {
+  from {
+    transform: translateY(0) translateX(0);
+  }
+  to {
+    transform: translateY(-40px) translateX(20px); /* 幅度更大 */
+  }
+}
+
+
+/* ================================= */
+/*        ABOUT BUBBLES UPGRADE      */
+/* ================================= */
+
+.about-bubbles span {
+  position: absolute;
+  bottom: -30px;
+  border-radius: 50%;
+  opacity: 0.6;
+  background: rgba(160, 220, 255, 0.8);
+  animation: bubbleRiseAboutVar linear infinite;
+}
+
+/* 多个不同参数 */
+.about-bubbles span:nth-child(1){
+  left: 5%;
+  width: 6px;
+  height: 6px;
+  animation-duration: 5s;
+}
+.about-bubbles span:nth-child(2){
+  left: 15%;
+  width: 10px;
+  height: 10px;
+  animation-duration: 8s;
+}
+.about-bubbles span:nth-child(3){
+  left: 30%;
+  width: 14px;
+  height: 14px;
+  animation-duration: 6s;
+}
+.about-bubbles span:nth-child(4){
+  left: 45%;
+  width: 8px;
+  height: 8px;
+  animation-duration: 9s;
+}
+.about-bubbles span:nth-child(5){
+  left: 60%;
+  width: 12px;
+  height: 12px;
+  animation-duration: 7s;
+}
+.about-bubbles span:nth-child(6){
+  left: 75%;
+  width: 5px;
+  height: 5px;
+  animation-duration: 4s;
+}
+.about-bubbles span:nth-child(7){
+  left: 85%;
+  width: 16px;
+  height: 16px;
+  animation-duration: 10s;
+}
+
+
+@keyframes bubbleRiseAboutVar {
+  0% {
+    transform: translateY(0) scale(0.8);
+    opacity: 0;
+  }
+  20% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-320px) scale(1.1);
+    opacity: 0;
+  }
+}
+
+
+
+/* ================================= */
+/*            WORD BUBBLES           */
+/* ================================= */
+
+.hint-bubbles{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10000;
+}
+
+
+.word-bubble {
+  position: fixed;
+  bottom: 0;               /* 从屏幕底部开始 */
+  padding: 10px 16px;
+  border-radius: 50px;
+  background: rgba(255,255,255,0.9);
+  color: #1e3a8a;
+  font-family: sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  animation: floatUp 13s ease-out forwards;
+  z-index: 100000;
+}
+
+
+@keyframes floatUp{
+  0%{
+    transform: translateY(0);
+    opacity: 0;
+  }
+  10%{
+    opacity: 1;
+  }
+  100%{
+    transform: translateY(-70vh);
+    opacity: 0;
+  }
+}
+
+
+
+
+/* ================================= */
+/*           CLOSE BUTTON            */
+/* ================================= */
+
 .close {
   position: absolute;
-  top: 15px;
-  right: 20px;
-  font-size: 24px;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  background: none;
+  border: none;
   cursor: pointer;
-  color: #f7b0e5;
-  border: 0;
-  margin: 0;
-  padding: 0;
+  color: #3f9cfa;
+  font-weight: 600;
 }
 
 
-.about,
-.double-click,
-.yuexu,
-.tap-for-music {
-  font-size: 12px;
-  font-family: sans-serif;      /* 跟 About 一样 */
-  letter-spacing: 0.08em;
-  color: #f7b0e5;               /* 统一颜色 */
-  opacity: 0.7;
-}
-
-
-
-#dark-layer.flicker {
-  #dark-layer.flicker {
-  animation: flicker 0.08s infinite alternate;
-}
-
-@keyframes flicker {
-  from { opacity: 0.6; }
-  to { opacity: 0.95; }
-}
-
-}
-
-@keyframes flicker {
-  from { opacity: 0.7; }
-  to { opacity: 0.9; }
-}
-
-
-
-@keyframes flicker {
-  from { filter: brightness(1); }
-  to { filter: brightness(0.7); }
-}
-
+/* ================================= */
+/*           DARK LAYER              */
+/* ================================= */
 
 #dark-layer {
   position: fixed;
@@ -316,19 +412,17 @@ h2{
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.4s ease;
-  z-index: 5;   /* 🔥 改大 */
-
+  z-index: 5;
 }
 
-.tap-for-music,
-.double-click,
-.yuexu {
-  transform: translateZ(0);
+#dark-layer.flicker {
+  animation: flickerDark 0.08s infinite alternate;
 }
 
 
-
-/*finish game modal*/
+/* ================================= */
+/*         GAME RESULT               */
+/* ================================= */
 
 .share-text {
   margin-top: 10px;
@@ -361,55 +455,171 @@ h2{
   transform: scale(1.1);
 }
 
-
 .try-btn {
   margin-top: 20px;
   padding: 6px 14px;
   font-size: 12px;
   letter-spacing: 0.08em;
   cursor: pointer;
-  background: #f7b0e5;
+  background: #3f9cfa;
   border: none;
   border-radius: 8px;
   color: white;
 }
 
 
-.mama {
-  --size: 400px;
-  --y: 30%;
-  --speed: 10s;
-  z-index: 4;
+/* ================================= */
+/*         ANIMATION SYSTEM          */
+/* ================================= */
+
+@keyframes swimFish {
+  0% { left: 100%; }
+  100% { left: -420px; }
 }
 
-.mama-message {
+@keyframes floatFish {
+  0% { transform: translateY(-50%) translateY(0); }
+  50% { transform: translateY(-50%) translateY(-100px); }
+  100% { transform: translateY(-50%) translateY(0); }
+}
+
+@keyframes floatMini {
+  from { transform: translateY(0); }
+  to { transform: translateY(-20px); }
+}
+
+@keyframes bubbleRiseMain {
+  0% { transform: translateY(0) scale(0.8); opacity: 0; }
+  10% { opacity: 0.6; }
+  50% { transform: translateY(-55vh) scale(1); }
+  100% { transform: translateY(-110vh) scale(1.2); opacity: 0; }
+}
+
+@keyframes bubbleRiseAbout {
+  from { transform: translateY(0); opacity: 0.7; }
+  to { transform: translateY(-250px); opacity: 0; }
+}
+
+@keyframes flickerDark {
+  from { opacity: 0.4; }
+  to { opacity: 0.6; }
+}
+
+@keyframes pop {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+
+#white-transition{
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: 0;
   background: white;
-  padding: 20px 30px;
-  border-radius: 15px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 14px;
-  z-index: 100;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  z-index: 9999;
   opacity: 1;
+  transition: opacity 1.5s ease;
+  pointer-events: none;
+}
+
+
+/*finish game congrats*/ 
+#result-modal .modal-content {
+  background: white;
+  padding: 50px 60px;
+  width: min(500px, 85vw);
+  border-radius: 28px;
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.15);
+}
+#result-modal h2 {
+  font-family: "Righteous", sans-serif;
+  font-size: 1.8em;
+  letter-spacing: 0.05em;
+  color: #3f9cfa;
+  margin-bottom: 10px;
+}
+#final-time {
+  font-family: sans-serif; 
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  color: #1e3a8a;
+  opacity: 0.8;
+}
+.try-btn {
+  margin-top: 25px;
+  padding: 8px 18px;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+
+  background: #3f9cfa;
+  border: none;
+  border-radius: 30px;
+  color: white;
+
+  transition: all 0.3s ease;
+}
+
+.try-btn:hover {
+  background: #1e3a8a;
+  transform: translateY(-2px);
 }
 
 
 
 
-.mama {
-  --size: 250px;
-  --y: 35%;
-  --speed: 5s;
-
-  left: 100%; /* 从右侧开始 */
-  animation:
-    swim 5s linear infinite,
-    float 3s ease-in-out infinite;
-
-  z-index: 4;
+/* ================================= */
+/*       BACKGROUND CREATURES        */
+/* ================================= */
+/*
+.bg-creatures {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
 }
+
+.bg-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  animation: bgSwim linear infinite;
+}
+
+.bg-wrapper img {
+  width: 120px;
+  opacity: 0.85;
+  animation: bgFloat 6s ease-in-out infinite;
+}
+
+
+/* ---------- Group 1 ----------
+.g1-1 { top: 75%; animation-duration: 18s; }
+.g1-2 { top: 85%; animation-duration:10s; }
+.g1-3 { top: 15%; animation-duration: 15s; }
+.g1-4 { top: 45%; animation-duration: 10s; }
+
+/* ---------- Group 2 ---------- 
+.g2-1 { top: 20%; animation-duration: 13s; }
+.g2-2 { top: 95%; animation-duration: 16s; }
+.g2-3 { top: 65%; animation-duration: 14s; }
+.g2-4 { top: 78%; animation-duration: 12s; }
+
+
+/* 横向游动（像 puffer 一样） 
+@keyframes bgSwim {
+  0%   { left: 100%; }
+  100% { left: -200px; }
+}
+
+/* 上下浮动 
+@keyframes bgFloat {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-20px); }
+  100% { transform: translateY(0); }
+}
+*/
 

@@ -15,6 +15,8 @@
 
 
 <body>
+  <div id="white-transition"></div>
+
 
   <div id="dark-layer"></div>
 
@@ -34,7 +36,7 @@
 </h1>
 
 <h2>
-    Learn About Puff Anatomy
+    Catch us all 
 </h2>
 
 
@@ -117,6 +119,32 @@
   You caught a mama fish! </div>
 
 
+  <!--learning fish-->
+  <div class="puffer learning">
+  <img src="puffer-learning.png" class="puffer-img base">
+  <img src="puffer-learning.png" class="puffer-img organs">
+</div>
+
+
+
+
+<!--small creatures background-->
+<div class="bg-creatures">
+
+  <!-- Group 1 
+  <div class="bg-wrapper g1-1"><img src="crab-03.png"></div>
+  <div class="bg-wrapper g1-2"><img src="fishes-04.png"></div>
+  <div class="bg-wrapper g1-3"><img src="green-fish-02.png"></div>
+  <div class="bg-wrapper g1-4"><img src="orange-fish.png"></div>
+
+  <!-- Group 2 
+  <div class="bg-wrapper g2-1"><img src="crab-03.png"></div>
+  <div class="bg-wrapper g2-2"><img src="fishes-04.png"></div>
+  <div class="bg-wrapper g2-3"><img src="green-fish-02.png"></div>
+  <div class="bg-wrapper g2-4"><img src="orange-fish.png"></div>
+
+</div>
+-->
 
 
 
@@ -143,11 +171,11 @@
  <!--Tap for music-->
 <div class="tap-for-music">tap here for music 🌊</div>
 
-<!--Double click on one of us-->
-<div class="double-click">catch them all! </div>
+<!--Double click on one of us
+<div class="double-click">catch them all! </div>-->
 
 <!--@yue xu-->
-<div class="yuexu"> Web by: Yue Xu </div>
+<div class="yuexu"> xuy435@newschool.edu </div>
 
 <!-- about page -->
 
@@ -178,17 +206,44 @@
 
 <button type="button" class="about">About</button>
 
-<div id="about-modal" class="modal hidden" aria-hidden="true">
-  <div class="modal-content" role="dialog" aria-modal="true">
-    <button type="button" class="close" aria-label="Close">×</button>
 
-    <h2 class="about-title">About Puff Lab</h2>
-    <p class="about-text">
-      Welcome to Puff Lab! This website explores non-linear learning through a playful, game-like experience to introduce pufferfish anatomy.
+<!--about modal-->
+<div id="about-modal" class="modal hidden">
+  <div class="modal-content about-box">
+
+    <button type="button" class="close">×</button>
+
+    <!-- 漂浮层 -->
+    <div class="about-decor">
+      <img src="crab-03.png" class="mini sea-1">
+      <img src="fishes-04.png" class="mini sea-2">
+      <img src="green-fish-02.png" class="mini sea-3">
+      <img src="orange-fish.png" class="mini sea-4">
+
+      <div class="about-bubbles">
+        
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+
+    <h2><span class="highlight">About Puff Lab</span></h2>
+    <p>
+      Puff Anatomy is an interactive exploration of pufferfish anatomy presented through non-linear text.
+<br>
+      Instead of reading information in a fixed order, users click, discover, and experience each organ individually. Text appears dynamically, falling into the screen like drifting objects in water.
+<br>
+      This project transforms biological information into a playful interface. It invites curiosity rather than instruction, suggesting that learning can be exploratory, intuitive, and slightly unpredictable — just like the ocean itself.
     </p>
-    <p>xuy435@newschool.edu</p>
+<p>By: Yue Xu</p>
+
   </div>
 </div>
+
+
+<!--word bubbles-->
+<div class="hint-bubbles"></div>
+
 
 
 <script>
@@ -231,13 +286,7 @@
     <h2>🎉 Congratulations!</h2>
     <p id="final-time"></p>
     <p class="share-text">
-      You’ve caught them all. Share the link below and see how long it takes your friends to capture every puff.
     </p>
-
-    <div class="share-row">
-      <input id="share-link" readonly>
-      <img src="copy.png" id="copy-btn" class="copy-icon" alt="copy">
-    </div>
 
 <button class="try-btn" onclick="window.location.reload();">
   Try Again

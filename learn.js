@@ -1,3 +1,4 @@
+
 document.addEventListener("DOMContentLoaded", () => {
   const bgm = document.getElementById("bgm");
   const hint = document.querySelector(".tap-for-music");
@@ -15,25 +16,25 @@ document.addEventListener("DOMContentLoaded", () => {
   // 1) 每个 organ 对应的文字（key 用 organ 的文件名/alt/data-title）
   // ----------------------------
   const organTexts = {
-  stomach: `A pufferfish’s stomach is basically a built-in airbag. When danger shows up, it gulps water (or air) and the stomach expands fast, turning the fish into a big, hard-to-swallow ball. That one organ can instantly change its whole “don’t eat me” size.`,
+  stomach: `Stomach: A pufferfish’s stomach is basically a built-in airbag. When danger shows up, it gulps water (or air) and the stomach expands fast, turning the fish into a big, hard-to-swallow ball. That one organ can instantly change its whole “don’t eat me” size.`,
 
-  gills: `When a pufferfish puffs up, it can’t swim away quickly—so breathing has to stay steady. The gills keep oxygen flowing even while the body is tense and inflated. They also help the fish stay balanced in salty water, which matters when it’s stressed.`,
+  gills: `Gills: When a pufferfish puffs up, it can’t swim away quickly—so breathing has to stay steady. The gills keep oxygen flowing even while the body is tense and inflated. They also help the fish stay balanced in salty water, which matters when it’s stressed.`,
 
-  heart: `Puffing up is a full-body emergency mode. The heart has to keep blood moving while the fish is stressed and using energy differently. A strong, steady heartbeat helps the pufferfish survive the scary moment long enough for its defense to work.`,
+  heart: `Heart: Puffing up is a full-body emergency mode. The heart has to keep blood moving while the fish is stressed and using energy differently. A strong, steady heartbeat helps the pufferfish survive the scary moment long enough for its defense to work.`,
 
-  spleen: `The spleen helps with blood and immune support, which is useful for a fish that suddenly switches from calm to “panic defense.” When a pufferfish gets threatened, its body needs backup systems to stay stable. Think of the spleen as part of that behind-the-scenes support team.`,
+  spleen: `Spleen: The spleen helps with blood and immune support, which is useful for a fish that suddenly switches from calm to “panic defense.” When a pufferfish gets threatened, its body needs backup systems to stay stable. Think of the spleen as part of that behind-the-scenes support team.`,
 
-  liver: `The liver is a major “processing center” for a pufferfish. Many pufferfish store powerful toxin (TTX) in organs like the liver, turning their body into chemical warning signs. It also helps handle a meaty diet like small crabs or shellfish.`,
+  liver: `Liver: The liver is a major “processing center” for a pufferfish. Many pufferfish store powerful toxin (TTX) in organs like the liver, turning their body into chemical warning signs. It also helps handle a meaty diet like small crabs or shellfish.`,
 
-  intestine: `Pufferfish often crush hard-shelled prey, but the intestine is what actually absorbs the energy from it. That energy helps the fish recover after puffing up and keeps its body ready for defense. It’s like turning tough food into fuel for survival tricks.`,
+  intestine: `Intestine: Pufferfish often crush hard-shelled prey, but the intestine is what actually absorbs the energy from it. That energy helps the fish recover after puffing up and keeps its body ready for defense. It’s like turning tough food into fuel for survival tricks.`,
 
-  ovary: `For many pufferfish, protection can extend to the next generation. Eggs can contain toxin, making them a risky snack for predators. The ovary doesn’t just make eggs—it can help guard them.`,
+  ovary: `Ovary: For many pufferfish, protection can extend to the next generation. Eggs can contain toxin, making them a risky snack for predators. The ovary doesn’t just make eggs—it can help guard them.`,
 
-  "swim-bladder": `Pufferfish aren’t built for nonstop fast swimming, so saving energy matters. The swim bladder helps them hover and control depth without constant effort. After puffing up, it also helps the fish return to a stable position in the water.`,
+  "swim-bladder": `Swim-bladder: Pufferfish aren’t built for nonstop fast swimming, so saving energy matters. The swim bladder helps them hover and control depth without constant effort. After puffing up, it also helps the fish return to a stable position in the water.`,
 
-  kidney: `Puffing up means taking in a lot of water, which can mess with the body’s balance. The kidney helps remove extra water and manage salts, especially in seawater. It’s key for “resetting” the body after the defense is over.`,
+  kidney: `Kidney: Puffing up means taking in a lot of water, which can mess with the body’s balance. The kidney helps remove extra water and manage salts, especially in seawater. It’s key for “resetting” the body after the defense is over.`,
 
-  "urinary-bladder": `The urinary bladder works like a small storage tank. After a pufferfish gulps water to inflate, it needs a controlled way to get rid of extra fluids. This helps the fish recover smoothly instead of staying stuck in imbalance.`,
+  "urinary-bladder": `Urinary-bladder: The urinary bladder works like a small storage tank. After a pufferfish gulps water to inflate, it needs a controlled way to get rid of extra fluids. This helps the fish recover smoothly instead of staying stuck in imbalance.`,
 };
 
 
@@ -110,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const text = organTexts[key] || "No description";
 
       const box = document.createElement("div");
-      box.className = "text-box falling";
+box.className = `text-box ${key}-box falling`;
       box.textContent = text;
 
       // ✅点击 box 也不影响 bgm
